@@ -1,0 +1,7 @@
+namespace Biblioteket
+{
+    class Book
+    {
+      
+    }
+}
