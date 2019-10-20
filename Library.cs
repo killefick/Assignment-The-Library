@@ -1,14 +1,20 @@
+using System.Collections.Generic;
+
 namespace Biblioteket
 {
     class Library
     {
+        // list to save books in library
+        static List<Book> myLibrary = new List<Book>();
+
+        protected static string result = "";
 
         // method to add one book to library
-        public static void AddBook()
+        public static void AddBook(Book book)
         {
-
+            myLibrary.Add(book);
         }
-
+        
         // method to add several books to library
         public static void AddSeveralBooks()
         {
