@@ -4,12 +4,12 @@ namespace Biblioteket
 {
     class Menu
     {
-        static string genre;
         static string userInput;
 
         // method to show menu to user
         public static void ShowMenu()
         {
+            string genre;
             while (true)
             {
                 // print menu
@@ -29,7 +29,8 @@ namespace Biblioteket
                 switch (userInput)
                 {
                     case "1":
-                        GetBookDetails();
+                        genre = GetGenre();
+                        GetDetails(genre);
                         break;
 
                     case "2":
@@ -52,10 +53,8 @@ namespace Biblioteket
             }
         }
 
-        static void GetBookDetails()
+        static string GetGenre()
         {
-            int releaseYear;
-
             while (true)
             {
                 Console.Clear();
@@ -73,57 +72,60 @@ namespace Biblioteket
                 switch (userInput)
                 {
                     case "1":
-                        genre = "Roman";
-                        break;
+                        return "Roman";
 
                     case "2":
-                        genre = "Tidskrift";
-                        break;
+                        return "Tidskrift";
 
                     case "3":
-                        genre = "Poesi";
-                        break;
+                        return "Poesi";
 
                     case "X":
-                        return;
+                        break;
 
                     default:
                         Console.WriteLine("Vänligen ange en siffra mellan 1 och 3!");
                         System.Threading.Thread.Sleep(1000);
                         break;
                 }
-                Console.Clear();
-                Console.WriteLine("Vänligen ange bokens titel: ");
-                string title = Console.ReadLine();
-
-                Console.Clear();
-                Console.WriteLine("Vänligen ange bokens författare: ");
-                string author = Console.ReadLine();
-
-                while (true)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Vänligen ange bokens utgivningsår: ");
-                    string tempInt = Console.ReadLine();
-
-                    // check if input can be a year
-                    try
-                    {
-                        releaseYear = Convert.ToInt32(tempInt);
-                        if (tempInt.Length == 4 && releaseYear <= DateTime.Now.Year)
-                        {
-                            break;
-                        }
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Vänligen ange ett giltigt årtal!");
-                    }
-                }
-                Book.CreateBook(genre, title, author, releaseYear);
-                break;
             }
         }
+
+        static void GetDetails(string genre)
+        {
+            int releaseYear;
+            Console.Clear();
+            Console.WriteLine("Vänligen ange bokens titel: ");
+            string title = Console.ReadLine();
+
+            Console.Clear();
+            Console.WriteLine("Vänligen ange bokens författare: ");
+            string author = Console.ReadLine();
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Vänligen ange bokens utgivningsår: ");
+                string tempInt = Console.ReadLine();
+
+                // check if input can be a year
+                try
+                {
+                    releaseYear = Convert.ToInt32(tempInt);
+                    if (releaseYear > 1454 && releaseYear <= DateTime.Now.Year)
+                    {
+                        break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Vänligen ange ett giltigt årtal!");
+                    System.Threading.Thread.Sleep(1000);
+                }
+            }
+            Book.CreateBook(genre, title, author, releaseYear);
+        }
+
 
         // method to print all books from library to screen
         public static void ShowAllBooks()

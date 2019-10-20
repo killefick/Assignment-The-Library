@@ -4,7 +4,7 @@ namespace Biblioteket
     public abstract class Book
     {
         // protected variables
-        protected string genre;
+        // protected string genre;
         protected string title;
         protected string author;
         protected int releaseYear;
