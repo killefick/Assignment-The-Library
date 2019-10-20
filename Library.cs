@@ -21,11 +21,7 @@ namespace Biblioteket
 
         }
 
-        // method to print all books from library to screen
-        public static void ShowAllBooks()
-        {
-
-        }
+     
 
         // method to search library for title, author or release year
         public static void Search()

@@ -36,7 +36,7 @@ namespace Biblioteket
                         break;
 
                     case "3":
-                        Library.ShowAllBooks();
+                        ShowAllBooks();
                         break;
 
                     case "4":
@@ -140,6 +140,14 @@ namespace Biblioteket
         static void GiveFeedback()
         {
 
+        }
+      // method to print all books from library to screen
+        public static void ShowAllBooks()
+        {
+foreach (Book item in collection)
+{
+    
+}
         }
     }
 }
