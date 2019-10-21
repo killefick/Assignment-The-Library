@@ -10,7 +10,7 @@ namespace Biblioteket
         // public property
         // public static List<Book> MyLibrary { get; set; }
 
-        // constructor instantiates
+        // // constructor instantiates
         // public Library()
         // {
         //     myLibrary = new List<Book>();
@@ -28,9 +28,14 @@ namespace Biblioteket
 
         }
 
-        public void GetBooks()
+        public static List<string> GetBooks()
         {
-
+            List<string> bookList = new List<string>();
+            foreach (var item in myLibrary)
+            {
+                bookList.Add(item.ToString());
+            }
+            return bookList ;
         }
 
         // method to search library for title, author or release year
