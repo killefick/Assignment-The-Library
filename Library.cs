@@ -41,6 +41,11 @@ namespace Biblioteket
                 {
                     bookList.Add(book.ToString());
                 }
+                else if (bookList.Count == 0)
+                {
+                    NoBook noBook = new NoBook();
+                    bookList.Add(noBook.ToString());
+                }
             }
             return bookList;
         }

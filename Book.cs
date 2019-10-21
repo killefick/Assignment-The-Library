@@ -78,4 +78,12 @@ namespace Biblioteket
             return result;
         }
     }
+    class NoBook
+    {
+        public override string ToString()
+        {
+            string result = "Söktermen matchade inte med någon av böckerna...";
+            return result;
+        }
+    }
 }
