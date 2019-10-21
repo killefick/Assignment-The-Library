@@ -6,6 +6,7 @@ namespace Biblioteket
     {
         // list to save books in library
         private static List<Book> myLibrary = new List<Book>();
+        private static List<string> bookList = new List<string>();
 
         // method to add one book to library
         public static void AddBook(Book myBook)
@@ -14,18 +15,15 @@ namespace Biblioteket
         }
 
         // method to add several books to library
-        public static void AddSeveralBooks(List<Book> myBooks)
+        public static void AddSeveralBooks(List<string> myBooks)
         {
-            foreach (Book book in myBooks)
-            {
-                myLibrary.Add(book);
-            }
+
         }
 
-        // method to put all books into a list of strings
-        public static List<string> GetBooks()
+        // method to put all books into a list of strings for output
+        public static List<string> MakeListOfBooks()
         {
-            List<string> bookList = new List<string>();
+            bookList.Clear();
             foreach (var book in myLibrary)
             {
                 bookList.Add(book.ToString());
@@ -34,9 +32,23 @@ namespace Biblioteket
         }
 
         // method to search library for title, author or release year
-        public static void Search()
+        public static List<string> SearchBooks(string searchString)
         {
-
+            bookList.Clear();
+            foreach (var book in myLibrary)
+            {
+                if (book.ToString().ToLower().Contains(searchString))
+                {
+                    bookList.Add(book.ToString());
+                }
+            }
+            return bookList;
         }
+        // else
+        // {
+        //     return "Inget i biblioteket matchade söktermen " + searchString + "!";
+        //     Console.WriteLine("\n\t\tTryck på valfri tangent för att återgå till menyn");
+        //     Console.ReadLine();
+        // }
     }
 }

@@ -7,10 +7,13 @@ namespace Biblioteket
     {
         static string userInput;
         static string genre;
+        static string title;
+        static string author;
+        static int releaseYear;
 
         // list that holds stringified books
-        static List<List<string>> bookListOfLists = new List<List<string>>();
-        static List<string> bookList = new List<string>();
+        static List<List<string>> bookListWithLists = new List<List<string>>();
+        static List<string> bookListWithStrings = new List<string>();
 
         // method to show menu to user
         public static void ShowMenu()
@@ -36,12 +39,13 @@ namespace Biblioteket
                     case "1":
                         genre = GetGenre();
                         CreateOneBook(genre);
+                        Book.CreateBook(genre, title, author, releaseYear);
+
                         Console.WriteLine("Boken har lagts till i bibioteket.");
                         System.Threading.Thread.Sleep(1000);
                         break;
 
                     case "2":
-
                         while (true)
                         {
                             genre = GetGenre();
@@ -54,11 +58,15 @@ namespace Biblioteket
                             }
                             else
                             {
-
-                                foreach (var item in bookList)
+                                foreach (string bookString in bookListWithStrings)
                                 {
-                                    // hur får man grejorna ur listan till att skapa en bok objekt?
+                                    // genre = bookString;
+                                    // title = bookString[1];
+                                    // author = bookString[2];
+                                    // releaseYear = Convert.ToInt32(bookString[3]);
+                                    // Book.CreateBook(genre, title, author, releaseYear);
                                 }
+                                bookListWithStrings.Clear();
                                 Console.WriteLine("Böckerna har lagts till i bibioteket.");
                                 System.Threading.Thread.Sleep(1000);
                                 break;
@@ -67,10 +75,11 @@ namespace Biblioteket
                         break;
 
                     case "3":
-                        ShowBooks();
+                        GetBookListFromLibrary();
                         break;
 
                     case "4":
+                        Search();
                         break;
 
                     case "X":
@@ -161,7 +170,6 @@ namespace Biblioteket
                     System.Threading.Thread.Sleep(1000);
                 }
             }
-            Book.CreateBook(genre, title, author, releaseYear);
         }
 
         // method to create list of books
@@ -201,36 +209,63 @@ namespace Biblioteket
                     Console.WriteLine("Ange ett giltigt årtal!");
                     System.Threading.Thread.Sleep(1000);
                 }
-
-
             }
-                bookList.Add(genre);
-                bookList.Add(title);
-                bookList.Add(author);
-                bookList.Add(releaseYear.ToString());
+            bookListWithStrings.Add(genre);
+            bookListWithStrings.Add(title);
+            bookListWithStrings.Add(author);
+            bookListWithStrings.Add(releaseYear.ToString());
             //  Book.CreateBook(genre, title, author, releaseYear);
             // Console.WriteLine("Boken har lagts till i bibioteket.");
         }
 
         // method to print all books in library to screen
-        static void ShowBooks()
+        static void GetBookListFromLibrary()
         {
             Console.Clear();
             Console.WriteLine("Biblioteket innehåller: ");
             Console.WriteLine("-----------------------");
             // add all books to the list
-            bookListOfLists.Add(Library.GetBooks());
-            foreach (var bookString in bookListOfLists)
+            bookListWithLists.Add(Library.MakeListOfBooks());
+            foreach (var bookObject in bookListWithLists)
             {
-                foreach (var book in bookString)
+                foreach (var bookString in bookObject)
                 {
-                    Console.WriteLine(book);
+                    Console.WriteLine(bookString);
                 }
             }
-            bookListOfLists.Clear();
+            bookListWithLists.Clear();
             Console.ReadKey();
         }
 
+        static void Search()
+        {
+            bookListWithLists.Clear();
+            while (true)
+            {
+                Console.Clear();
+                Console.Write("Ange sökord: ");
+                string searchString = Console.ReadLine();
 
+                // ignore short strings
+                if (searchString.Length > 3)
+                {
+                    bookListWithLists.Add(Library.SearchBooks(searchString.ToLower()));
+                    foreach (var bookObject in bookListWithLists)
+                    {
+                        foreach (var bookString in bookObject)
+                        {
+                            Console.WriteLine(bookString);
+                        }
+                    }
+                    Console.ReadKey();
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("Skriv minst 4 tecken som sökord!");
+                    System.Threading.Thread.Sleep(2000);
+                }
+            }
+        }
     }
 }

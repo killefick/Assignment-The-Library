@@ -63,7 +63,7 @@ namespace Biblioteket
         }
         public override string ToString()
         {
-             string result = title + " skriven av " + author + ", utgiven " + releaseYear + " (Tidskrift).";
+            string result = title + " skriven av " + author + ", utgiven " + releaseYear + " (Tidskrift).";
             return result;
         }
     }
@@ -74,7 +74,7 @@ namespace Biblioteket
         }
         public override string ToString()
         {
-             string result = title + " skriven av " + author + ", utgiven " + releaseYear + " (Novellsamling).";
+            string result = title + " skriven av " + author + ", utgiven " + releaseYear + " (Novellsamling).";
             return result;
         }
     }
