@@ -7,15 +7,6 @@ namespace Biblioteket
         // list to save books in library
         private static List<Book> myLibrary = new List<Book>();
 
-        // public property
-        // public static List<Book> MyLibrary { get; set; }
-
-        // // constructor instantiates
-        // public Library()
-        // {
-        //     myLibrary = new List<Book>();
-        // }
-
         // method to add one book to library
         public static void AddBook(Book myBook)
         {
@@ -28,14 +19,15 @@ namespace Biblioteket
 
         }
 
+        // method to put all books into a list of strings
         public static List<string> GetBooks()
         {
             List<string> bookList = new List<string>();
-            foreach (var item in myLibrary)
+            foreach (var book in myLibrary)
             {
-                bookList.Add(item.ToString());
+                bookList.Add(book.ToString());
             }
-            return bookList ;
+            return bookList;
         }
 
         // method to search library for title, author or release year

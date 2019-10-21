@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-
 namespace Biblioteket
 {
     class Menu
     {
         static string userInput;
+        // list that holds stringified books
         static List<List<string>> bookList = new List<List<string>>();
 
         // method to show menu to user
@@ -69,14 +69,16 @@ namespace Biblioteket
                         Console.Clear();
                         Console.WriteLine("Biblioteket innehåller: ");
                         Console.WriteLine("-----------------------");
+                        // add all books to the list
                         bookList.Add(Library.GetBooks());
-                        foreach (var item in bookList)
+                        foreach (var bookString in bookList)
                         {
-                            foreach (var book in item)
+                            foreach (var book in bookString)
                             {
                                 Console.WriteLine(book);
                             }
                         }
+                        bookList.Clear();
                         Console.ReadKey();
                         break;
 
@@ -174,15 +176,6 @@ namespace Biblioteket
             Book.CreateBook(genre, title, author, releaseYear);
             Console.WriteLine("Boken har lagts till i bibioteket.");
             System.Threading.Thread.Sleep(1000);
-        }
-
-        // method to print all books from library to screen
-        public static void ShowAllBooks()
-        {
-            // foreach (var item in Library.myLibrary)
-            // {
-            //     Console.WriteLine(item.ToString());
-            // }
         }
     }
 }
