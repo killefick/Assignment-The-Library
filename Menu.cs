@@ -66,20 +66,7 @@ namespace Biblioteket
                         break;
 
                     case "3":
-                        Console.Clear();
-                        Console.WriteLine("Biblioteket innehåller: ");
-                        Console.WriteLine("-----------------------");
-                        // add all books to the list
-                        bookList.Add(Library.GetBooks());
-                        foreach (var bookString in bookList)
-                        {
-                            foreach (var book in bookString)
-                            {
-                                Console.WriteLine(book);
-                            }
-                        }
-                        bookList.Clear();
-                        Console.ReadKey();
+                        ShowBooks();
                         break;
 
                     case "4":
@@ -96,7 +83,7 @@ namespace Biblioteket
             }
         }
 
-        // ask for genre
+        // method to ask for genre
         static string GetGenre()
         {
             while (true)
@@ -106,7 +93,7 @@ namespace Biblioteket
                 Console.WriteLine("------------------------------------------------");
                 Console.WriteLine("[1] Roman");
                 Console.WriteLine("[2] Tidskrift");
-                Console.WriteLine("[3] Poesi");
+                Console.WriteLine("[3] Novellsamling");
                 Console.WriteLine("[X] Gå tillbaka");
                 Console.WriteLine("------------------------------------------------");
                 Console.Write("Ditt val: ");
@@ -122,7 +109,7 @@ namespace Biblioteket
                         return "Tidskrift";
 
                     case "3":
-                        return "Poesi";
+                        return "Novellsamling";
 
                     case "X":
                         break;
@@ -135,7 +122,7 @@ namespace Biblioteket
             }
         }
 
-        // create a book with all details
+        // method to create a book with all details
         static void CreateBook(string genre)
         {
             int releaseYear;
@@ -176,6 +163,25 @@ namespace Biblioteket
             Book.CreateBook(genre, title, author, releaseYear);
             Console.WriteLine("Boken har lagts till i bibioteket.");
             System.Threading.Thread.Sleep(1000);
+        }
+
+        // method to print all books in library to screen
+        static void ShowBooks()
+        {
+            Console.Clear();
+            Console.WriteLine("Biblioteket innehåller: ");
+            Console.WriteLine("-----------------------");
+            // add all books to the list
+            bookList.Add(Library.GetBooks());
+            foreach (var bookString in bookList)
+            {
+                foreach (var book in bookString)
+                {
+                    Console.WriteLine(book);
+                }
+            }
+            bookList.Clear();
+            Console.ReadKey();
         }
     }
 }

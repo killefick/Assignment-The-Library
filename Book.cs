@@ -36,7 +36,7 @@ namespace Biblioteket
                     Library.AddBook(myMagazine);
                     break;
 
-                case "Peosi":
+                case "Novellsamling":
                     NovelCollection myNovelCollection = new NovelCollection(title, author, releaseYear);
                     Library.AddBook(myNovelCollection);
                     break;
