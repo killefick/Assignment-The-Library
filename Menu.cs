@@ -16,10 +16,10 @@ namespace Biblioteket
                 Console.Clear();
                 Console.WriteLine("Välkommen till biblioteket!");
                 Console.WriteLine("------------------------------------------------");
-                Console.WriteLine("[1] Lägg till en bok i biblioteket");
-                Console.WriteLine("[2] Lägg till flera böcker i biblioteket");
-                Console.WriteLine("[3] Skriv ut alla böcker som finns i biblioteket");
-                Console.WriteLine("[4] Leta efter en bok i biblioteket");
+                Console.WriteLine("[1] Lägg till en bok");
+                Console.WriteLine("[2] Lägg till flera böcker");
+                Console.WriteLine("[3] Skriv ut alla böcker som finns");
+                Console.WriteLine("[4] Leta efter en bok");
                 Console.WriteLine("[X] Avsluta programmet");
                 Console.WriteLine("------------------------------------------------");
                 Console.Write("Ditt val: ");
@@ -30,13 +30,44 @@ namespace Biblioteket
                 {
                     case "1":
                         genre = GetGenre();
-                        GetDetails(genre);
+                        CreateBook(genre);
                         break;
 
                     case "2":
+                        int antal;
+                        while (true)
+                        {
+                            Console.Clear();
+                            Console.Write("Hur många böcker vill du lägga till? ");
+                            userInput = Console.ReadLine();
+
+                            try
+                            {
+                                antal = Convert.ToInt32(userInput);
+                                break;
+                            }
+                            catch
+                            {
+                                Console.WriteLine("Ange ett giltigt antal!");
+                                System.Threading.Thread.Sleep(1000);
+                            }
+                        }
+                        for (int i = 0; i < antal; i++)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Ange detaljerna för bok " + (i + 1) + " av " + antal + ":");
+                            System.Threading.Thread.Sleep(2000);
+                            genre = GetGenre();
+                            CreateBook(genre);
+                        }
                         break;
 
                     case "3":
+                        Console.Clear();
+                        Console.WriteLine("Biblioteket innehåller: ");
+                        Console.WriteLine("-----------------------");
+                        ShowAllBooks();
+                        Console.ReadKey();
                         break;
 
                     case "4":
@@ -46,19 +77,20 @@ namespace Biblioteket
                         return;
 
                     default:
-                        Console.WriteLine("Vänligen ange en siffra mellan 1 och 4!");
+                        Console.WriteLine("Ange en siffra mellan 1 och 4!");
                         System.Threading.Thread.Sleep(1000);
                         break;
                 }
             }
         }
 
+        // ask for genre
         static string GetGenre()
         {
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Vänligen ange bokens genre!");
+                Console.WriteLine("Ange bokens genre!");
                 Console.WriteLine("------------------------------------------------");
                 Console.WriteLine("[1] Roman");
                 Console.WriteLine("[2] Tidskrift");
@@ -84,53 +116,63 @@ namespace Biblioteket
                         break;
 
                     default:
-                        Console.WriteLine("Vänligen ange en siffra mellan 1 och 3!");
+                        Console.WriteLine("Ange en siffra mellan 1 och 3!");
                         System.Threading.Thread.Sleep(1000);
                         break;
                 }
             }
         }
 
-        static void GetDetails(string genre)
+        // create a book with all details
+        static void CreateBook(string genre)
         {
             int releaseYear;
             Console.Clear();
-            Console.WriteLine("Vänligen ange bokens titel: ");
+            Console.WriteLine("Ange bokens titel: ");
             string title = Console.ReadLine();
 
             Console.Clear();
-            Console.WriteLine("Vänligen ange bokens författare: ");
+            Console.WriteLine("Ange bokens författare: ");
             string author = Console.ReadLine();
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Vänligen ange bokens utgivningsår: ");
+                Console.WriteLine("Ange bokens utgivningsår: ");
                 string tempInt = Console.ReadLine();
 
                 // check if input can be a year
                 try
                 {
                     releaseYear = Convert.ToInt32(tempInt);
-                    if (releaseYear > 1454 && releaseYear <= DateTime.Now.Year)
+                    if (releaseYear >= 1454 && releaseYear <= DateTime.Now.Year)
                     {
                         break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ange ett giltigt årtal!");
+                        System.Threading.Thread.Sleep(1000);
                     }
                 }
                 catch
                 {
-                    Console.WriteLine("Vänligen ange ett giltigt årtal!");
+                    Console.WriteLine("Ange ett giltigt årtal!");
                     System.Threading.Thread.Sleep(1000);
                 }
             }
             Book.CreateBook(genre, title, author, releaseYear);
+            Console.WriteLine("Boken har lagts till i bibioteket.");
+            System.Threading.Thread.Sleep(1000);
         }
-
-
-        // method to print all books from library to screen
+   
+     // method to print all books from library to screen
         public static void ShowAllBooks()
         {
-
+            // foreach (var item in Library.myLibrary)
+            // {
+            //     Console.WriteLine(item.ToString());
+            // }
         }
     }
 }

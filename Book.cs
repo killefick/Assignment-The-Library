@@ -4,7 +4,6 @@ namespace Biblioteket
     public abstract class Book
     {
         // protected variables
-        // protected string genre;
         protected string title;
         protected string author;
         protected int releaseYear;
@@ -38,8 +37,8 @@ namespace Biblioteket
                     break;
 
                 case "Peosi":
-                    Poetry myPoetry = new Poetry(title, author, releaseYear);
-                    Library.AddBook(myPoetry);
+                    NovelCollection myNovelCollection = new NovelCollection(title, author, releaseYear);
+                    Library.AddBook(myNovelCollection);
                     break;
             }
         }
@@ -53,7 +52,7 @@ namespace Biblioteket
         }
         public override string ToString()
         {
-            string result = "Roman: " + title + " " + author + " " + releaseYear;
+            string result = title + " skriven av " + author + ", utgiven " + releaseYear + " (Roman).";
             return result;
         }
     }
@@ -64,18 +63,18 @@ namespace Biblioteket
         }
         public override string ToString()
         {
-            string result = "Tidskrift: " + title + " " + author + " " + releaseYear;
+            string result = "Tidskriften " + title + ", skriven av " + author + ", utgiven " + releaseYear + " .";
             return result;
         }
     }
-    class Poetry : Book
+    class NovelCollection : Book
     {
-        public Poetry(string title, string author, int releaseYear) : base(title, author, releaseYear)
+        public NovelCollection(string title, string author, int releaseYear) : base(title, author, releaseYear)
         {
         }
         public override string ToString()
         {
-            string result = "Poesi: " + title + " " + author + " " + releaseYear;
+            string result = "Novellsamlingen " + title + ", skriven av " + author + ", utgiven " + releaseYear + " .";
             return result;
         }
     }
