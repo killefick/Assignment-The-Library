@@ -36,6 +36,8 @@ namespace Biblioteket
                     case "1":
                         genre = GetGenre();
                         CreateOneBook(genre);
+                        Console.WriteLine("Boken har lagts till i bibioteket.");
+                        System.Threading.Thread.Sleep(1000);
                         break;
 
                     case "2":
@@ -52,6 +54,13 @@ namespace Biblioteket
                             }
                             else
                             {
+
+                                foreach (var item in bookList)
+                                {
+                                    // hur får man grejorna ur listan till att skapa en bok objekt?
+                                }
+                                Console.WriteLine("Böckerna har lagts till i bibioteket.");
+                                System.Threading.Thread.Sleep(1000);
                                 break;
                             }
                         }
@@ -153,8 +162,6 @@ namespace Biblioteket
                 }
             }
             Book.CreateBook(genre, title, author, releaseYear);
-            Console.WriteLine("Boken har lagts till i bibioteket.");
-            System.Threading.Thread.Sleep(1000);
         }
 
         // method to create list of books
@@ -196,8 +203,11 @@ namespace Biblioteket
                 }
 
 
-                bookList.Add(genre + title + author + tempInt);
             }
+                bookList.Add(genre);
+                bookList.Add(title);
+                bookList.Add(author);
+                bookList.Add(releaseYear.ToString());
             //  Book.CreateBook(genre, title, author, releaseYear);
             // Console.WriteLine("Boken har lagts till i bibioteket.");
         }
