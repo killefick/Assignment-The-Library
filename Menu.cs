@@ -30,13 +30,13 @@ namespace Biblioteket
             {
                 Console.Clear();
                 Console.WriteLine("Välkommen till biblioteket!");
-                Console.WriteLine("------------------------------------------------");
+                Console.WriteLine("---------------------------");
                 Console.WriteLine("[1] Lägg till en bok");
                 Console.WriteLine("[2] Lägg till flera böcker");
-                Console.WriteLine("[3] Skriv ut alla böcker som finns");
+                Console.WriteLine("[3] Skriv ut alla böcker");
                 Console.WriteLine("[4] Leta efter en bok");
                 Console.WriteLine("[X] Avsluta programmet");
-                Console.WriteLine("------------------------------------------------");
+                Console.WriteLine("---------------------------");
                 Console.Write("Ditt val: ");
                 userInput = Console.ReadLine().ToUpper();
 
@@ -130,12 +130,12 @@ namespace Biblioteket
             {
                 Console.Clear();
                 Console.WriteLine("Vänligen ange genre!");
-                Console.WriteLine("------------------------------------------------");
+                Console.WriteLine("--------------------");
                 Console.WriteLine("[1] Roman");
                 Console.WriteLine("[2] Tidskrift");
                 Console.WriteLine("[3] Novellsamling");
                 Console.WriteLine("[X] Gå tillbaka");
-                Console.WriteLine("------------------------------------------------");
+                Console.WriteLine("--------------------");
                 Console.Write("Ditt val: ");
 
                 userInput = Console.ReadLine().ToUpper();
@@ -230,7 +230,8 @@ namespace Biblioteket
                 }
             }
             tempBooksList.Clear();
-            Console.WriteLine("-----Tryck på valfri tangent-----");
+            Console.WriteLine("-----------------------");
+            Console.WriteLine("-> Tryck valfri tangent <-");
             Console.ReadKey();
         }
 
@@ -263,6 +264,7 @@ namespace Biblioteket
                             Console.WriteLine(book);
                         }
                     }
+                    Console.WriteLine("-> Tryck valfri tangent <-");
                     Console.ReadKey();
                     return;
                 }
