@@ -15,9 +15,15 @@ namespace Biblioteket
         }
 
         // method to add several books to library
-        public static void AddSeveralBooks(List<string> myBooks)
+        public static void AddManyBooks(List<List<string>> tempBooksList)
         {
+            foreach (var tempBooksString in tempBooksList)
+            {
+                foreach (string detail in tempBooksString)
+                {
 
+                }
+            }
         }
 
         // method to put all books into a list of strings for output

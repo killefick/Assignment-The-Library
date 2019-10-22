@@ -12,9 +12,9 @@ namespace Biblioteket
         static int releaseYear;
 
         // list that holds books details
-        static List<string> bookListWithStrings = new List<string>();
+        static List<string> tempBooksString = new List<string>();
         // list that holds several stringified books
-        static List<List<string>> bookListWithLists = new List<List<string>>();
+        static List<List<string>> tempBooksList = new List<List<string>>();
 
         // method to show menu to user
         public static void ShowMenu()
@@ -50,22 +50,26 @@ namespace Biblioteket
                     case "2":
                         while (true)
                         {
+                            tempBooksString.Clear();
                             genre = GetGenre();
                             GetBookDetails();
                             // add current book to temp list
-                            bookListWithStrings.Add(genre);
-                            bookListWithStrings.Add(title);
-                            bookListWithStrings.Add(author);
-                            bookListWithStrings.Add(releaseYear.ToString());
+                            tempBooksString.Add(genre);
+                            tempBooksString.Add(title);
+                            tempBooksString.Add(author);
+                            tempBooksString.Add(releaseYear.ToString());
 
-                            Console.Write("Vill du lägga till en bok? [J/N]: ");
+                            // add the list of 4 to another list (making them en entity) 
+                            tempBooksList.Add(tempBooksString);
+
+                            Console.Clear();
+                            Console.Write("Vill du lägga till fler böcker? [J/N]: ");
                             userInput = Console.ReadLine().ToUpper();
 
                             // create books from details in list
-                            if (userInput != "J")
+                            
                             {
-                                CreateManyBooks();
-                                bookListWithStrings.Clear();
+                                Library.AddManyBooks(tempBooksList);
                                 Console.WriteLine("Böckerna har lagts till i bibioteket.");
                                 System.Threading.Thread.Sleep(1000);
                                 break;
@@ -176,15 +180,6 @@ namespace Biblioteket
             Book.CreateBook(genre, title, author, releaseYear.ToString());
         }
 
-        // method to create list of books
-        static void CreateManyBooks()
-        {
-
-
-            //  Book.CreateBook(genre, title, author, releaseYear);
-            // Console.WriteLine("Boken har lagts till i bibioteket.");
-        }
-
         // method to get book's details
         static void GetBookDetails()
         {
@@ -231,22 +226,22 @@ namespace Biblioteket
             Console.WriteLine("Biblioteket innehåller: ");
             Console.WriteLine("-----------------------");
             // add all books to the list
-            bookListWithLists.Add(Library.MakeListOfBooks());
-            foreach (var bookObject in bookListWithLists)
+            tempBooksList.Add(Library.MakeListOfBooks());
+            foreach (var bookObject in tempBooksList)
             {
                 foreach (var bookString in bookObject)
                 {
                     Console.WriteLine(bookString);
                 }
             }
-            bookListWithLists.Clear();
+            tempBooksList.Clear();
             Console.ReadKey();
         }
 
         // method to search library for matches
         static void Search()
         {
-            bookListWithLists.Clear();
+            tempBooksList.Clear();
             while (true)
             {
                 Console.Clear();
@@ -256,8 +251,8 @@ namespace Biblioteket
                 // ignore short strings
                 if (searchString.Length > 3)
                 {
-                    bookListWithLists.Add(Library.SearchBooks(searchString.ToLower()));
-                    foreach (var bookObject in bookListWithLists)
+                    tempBooksList.Add(Library.SearchBooks(searchString.ToLower()));
+                    foreach (var bookObject in tempBooksList)
                     {
                         foreach (var bookString in bookObject)
                         {
