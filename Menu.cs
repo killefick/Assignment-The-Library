@@ -6,22 +6,26 @@ namespace Biblioteket
     class Menu
     {
         static string userInput;
-        static string genre;
-        static string title;
-        static string author;
-        static int releaseYear;
+
 
         // creates instance of Menu
         Menu M = new Menu();
 
         // list that holds books details
-        static List<string> tempBooksString = new List<string>();
+        // static List<string> tempBooksString = new List<string>();
         // list that holds several stringified books
-        static List<List<string>> tempBooksList = new List<List<string>>();
+        //static List<List<string>> tempBooksList = new List<List<string>>();
 
         // method to show menu to user
         public static void ShowMenu()
         {
+            List<List<string>> tempBooksList = new List<List<string>>();
+            List<string> tempBooksString = new List<string>();
+            string genre = "";
+            string title = "";
+            string author = "";
+            int releaseYear = 0;
+
             while (true)
             {
                 Console.Clear();
@@ -39,13 +43,14 @@ namespace Biblioteket
                 switch (userInput)
                 {
                     case "1":
-                        // pick a genre
+                        // get book details
                         genre = GetGenre();
-                        // read book details
-                        GetBookDetails();
+                        title = GetTitle();
+                        author = GetAuthor();
+                        releaseYear = GetReleaseYear();
+
                         // create a book in library
                         Book.CreateBook(genre, title, author, releaseYear.ToString());
-
                         Console.WriteLine("Boken har lagts till i bibioteket.");
                         System.Threading.Thread.Sleep(1000);
                         break;
@@ -54,8 +59,13 @@ namespace Biblioteket
                         while (true)
                         {
                             tempBooksString.Clear();
+
+                            // get book details
                             genre = GetGenre();
-                            GetBookDetails();
+                            title = GetTitle();
+                            author = GetAuthor();
+                            releaseYear = GetReleaseYear();
+
                             // add current book to temp list
                             tempBooksString.Add(genre);
                             tempBooksString.Add(title);
@@ -77,7 +87,6 @@ namespace Biblioteket
                                 System.Threading.Thread.Sleep(1000);
                                 break;
                             }
-
                             else
                             {
                                 // continue loop
@@ -142,89 +151,147 @@ namespace Biblioteket
                 }
             }
         }
+  
+        // method to ask for title
+        static string GetTitle()
+        {
+            Console.Clear();
+            Console.WriteLine("Ange bokens titel: ");
+            string title = Console.ReadLine();
+            return title;
+        }
+
+        // method to ask for author
+        static string GetAuthor()
+        {
+            Console.Clear();
+            Console.WriteLine("Ange bokens författare: ");
+            string author = Console.ReadLine();
+            return author;
+        }
+
+        // method to ask for release year
+        static int GetReleaseYear()
+        {
+            int releaseYear;
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Ange bokens utgivningsår: ");
+                string tempInt = Console.ReadLine();
+
+                // check if input can be a year
+                try
+                {
+                    releaseYear = Convert.ToInt32(tempInt);
+                    if (releaseYear >= 1454 && releaseYear <= DateTime.Now.Year)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ange ett giltigt årtal!");
+                        System.Threading.Thread.Sleep(1000);
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Ange ett giltigt årtal!");
+                    System.Threading.Thread.Sleep(1000);
+                }
+            }
+            return releaseYear;
+        }
 
         // method to create a book with all details
-        static void CreateOneBook(string genre)
-        {
-            Console.Clear();
-            Console.WriteLine("Ange bokens titel: ");
-            title = Console.ReadLine();
+        // static void CreateOneBook(string genre)
+        // {
+        //     string title = "";
+        //     string author = "";
+        //     int releaseYear = 0;
+        //     Console.Clear();
+        //     Console.WriteLine("Ange bokens titel: ");
+        //     title = Console.ReadLine();
 
-            Console.Clear();
-            Console.WriteLine("Ange bokens författare: ");
-            author = Console.ReadLine();
+        //     Console.Clear();
+        //     Console.WriteLine("Ange bokens författare: ");
+        //     author = Console.ReadLine();
 
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("Ange bokens utgivningsår: ");
-                string tempInt = Console.ReadLine();
+        //     while (true)
+        //     {
+        //         Console.Clear();
+        //         Console.WriteLine("Ange bokens utgivningsår: ");
+        //         string tempInt = Console.ReadLine();
 
-                // check if input can be a year
-                try
-                {
-                    releaseYear = Convert.ToInt32(tempInt);
-                    if (releaseYear >= 1454 && releaseYear <= DateTime.Now.Year)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ange ett giltigt årtal!");
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                }
-                catch
-                {
-                    Console.WriteLine("Ange ett giltigt årtal!");
-                    System.Threading.Thread.Sleep(1000);
-                }
-            }
-            Book.CreateBook(genre, title, author, releaseYear.ToString());
-        }
+        //         // check if input can be a year
+        //         try
+        //         {
+        //             releaseYear = Convert.ToInt32(tempInt);
+        //             if (releaseYear >= 1454 && releaseYear <= DateTime.Now.Year)
+        //             {
+        //                 break;
+        //             }
+        //             else
+        //             {
+        //                 Console.WriteLine("Ange ett giltigt årtal!");
+        //                 System.Threading.Thread.Sleep(1000);
+        //             }
+        //         }
+        //         catch
+        //         {
+        //             Console.WriteLine("Ange ett giltigt årtal!");
+        //             System.Threading.Thread.Sleep(1000);
+        //         }
+        //     }
+        //     Book.CreateBook(genre, title, author, releaseYear.ToString());
+        // }
 
         // method to get book's details
-        static void GetBookDetails()
-        {
-            Console.Clear();
-            Console.WriteLine("Ange bokens titel: ");
-            title = Console.ReadLine();
+        // static void GetBookDetails()
+        // {
+        //     // string title = "";
+        //     // string author = "";
+        //     // int releaseYear = 0;
+        //     // Console.Clear();
+        //     // Console.WriteLine("Ange bokens titel: ");
+        //     // title = Console.ReadLine();
 
-            Console.Clear();
-            Console.WriteLine("Ange bokens författare: ");
-            author = Console.ReadLine();
+        //     // Console.Clear();
+        //     // Console.WriteLine("Ange bokens författare: ");
+        //     // author = Console.ReadLine();
 
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("Ange bokens utgivningsår: ");
-                string tempInt = Console.ReadLine();
+        //     // while (true)
+        //     // {
+        //     //     Console.Clear();
+        //     //     Console.WriteLine("Ange bokens utgivningsår: ");
+        //     //     string tempInt = Console.ReadLine();
 
-                // check if input can be a year
-                try
-                {
-                    releaseYear = Convert.ToInt32(tempInt);
-                    if (releaseYear >= 1454 && releaseYear <= DateTime.Now.Year)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ange ett giltigt årtal!");
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                }
-                catch
-                {
-                    Console.WriteLine("Ange ett giltigt årtal!");
-                    System.Threading.Thread.Sleep(1000);
-                }
-            }
-        }
+        //     //     // check if input can be a year
+        //     //     try
+        //     //     {
+        //     //         releaseYear = Convert.ToInt32(tempInt);
+        //     //         if (releaseYear >= 1454 && releaseYear <= DateTime.Now.Year)
+        //     //         {
+        //     //             break;
+        //     //         }
+        //     //         else
+        //     //         {
+        //     //             Console.WriteLine("Ange ett giltigt årtal!");
+        //     //             System.Threading.Thread.Sleep(1000);
+        //     //         }
+        //     //     }
+        //     //     catch
+        //     //     {
+        //     //         Console.WriteLine("Ange ett giltigt årtal!");
+        //     //         System.Threading.Thread.Sleep(1000);
+        //     //     }
+        //     // }
+        // }
 
         // method to print all books in library to screen
         static void PrintBookList()
         {
+            List<List<string>> tempBooksList = new List<List<string>>();
             Console.Clear();
             Console.WriteLine("Biblioteket innehåller: ");
             Console.WriteLine("-----------------------");
@@ -244,6 +311,7 @@ namespace Biblioteket
         // method to search library for matches
         static void Search()
         {
+            List<List<string>> tempBooksList = new List<List<string>>();
             tempBooksList.Clear();
             while (true)
             {
