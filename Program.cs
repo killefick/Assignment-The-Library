@@ -4,16 +4,16 @@
     {
         static void Main(string[] args)
         {
-            // adds some initial books to library
-            Novel myBook1 = new Novel("Pippi Långstrump", "Astrid Lindgren", "1945");
+            // add some books to library
+            Novel myBook1 = new Novel("W", "Steve Sem-Sandberg", "2013");
             Library.AddBook(myBook1);
-            Novel myBook2 = new Novel("Bröderna Lejonhjärta", "Astrid Lindgren", "1973");
+            Magazine myBook2 = new Magazine("Vem dödade bambi?", "Monika Fagerholm", "1973");
             Library.AddBook(myBook2);
-            Novel myBook3 = new Novel("Alla vi barn i Bullerbyn", "Astrid Lindgren", "1943");
+            NovelCollection myBook3 = new NovelCollection("Köttets tid", "Lina Wolff", "1943");
             Library.AddBook(myBook3);
-            Novel myBook4 = new Novel("Lotta på Bråkmakargatan", "Astrid Lindgren", "1961");
+            Novel myBook4 = new Novel("Jag vill sätta världen i rörelse", "Anna-Karin Palm", "1961");
             Library.AddBook(myBook4);
-            Novel myBook5 = new Novel("Lillebror och Karlsson på taket", "Astrid Lindgren", "1955");
+            Magazine myBook5 = new Magazine("Oktoberbarn", "Linda Boström Knausgård", "1955");
             Library.AddBook(myBook5);
 
             // show user interface

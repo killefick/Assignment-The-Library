@@ -237,8 +237,8 @@ namespace Biblioteket
         // method to search library for matches
         static void Search()
         {
-            List<List<string>> tempBooksList = new List<List<string>>();
-            tempBooksList.Clear();
+            List<List<string>> matchingBooks = new List<List<string>>();
+
             while (true)
             {
                 Console.Clear();
@@ -248,12 +248,19 @@ namespace Biblioteket
                 // ignore short strings
                 if (searchString.Length > 3)
                 {
-                    tempBooksList.Add(Library.SearchBooks(searchString.ToLower()));
-                    foreach (var bookObject in tempBooksList)
+                    // make the search case insensitive
+                    // look for match in all books
+                    // if match, get returning list of book details (4 strings per book entry)
+                    // and add to matchingBooks
+                    matchingBooks.Add(Library.SearchBooks(searchString.ToLower()));
+
+                    // every list containing book details
+                    foreach (var books in matchingBooks)
                     {
-                        foreach (var bookString in bookObject)
+                        // every book
+                        foreach (var book in books)
                         {
-                            Console.WriteLine(bookString);
+                            Console.WriteLine(book);
                         }
                     }
                     Console.ReadKey();

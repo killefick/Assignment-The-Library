@@ -1,17 +1,12 @@
 namespace Biblioteket
 {
-    // superclass
+    // superclass, not instatiable
     public abstract class Book
     {
         // protected variables
         protected string title;
         protected string author;
         protected string releaseYear;
-
-        // accessable properties
-        // public static string Title { get; set; }
-        // public static string Author { get; set; }
-        // public static string releaseYear { get; set; }
 
         // constructor initialising varibles
         public Book(string title, string author, string releaseYear)
@@ -78,6 +73,7 @@ namespace Biblioteket
             return result;
         }
     }
+    // used if a search gets no results
     class NoBook
     {
         public override string ToString()
