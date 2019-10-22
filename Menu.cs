@@ -5,26 +5,17 @@ namespace Biblioteket
 {
     class Menu
     {
-        static string userInput;
-
-
-        // creates instance of Menu
-        Menu M = new Menu();
-
-        // static List<string> tempBooksString = new List<string>();
-        //static List<List<string>> tempBooksList = new List<List<string>>();
-
         // method to show menu to user
         public static void ShowMenu()
         {
             // list that holds several stringified books
             List<List<string>> bookList = new List<List<string>>();
 
-
-            string genre = "";
-            string title = "";
-            string author = "";
-            int releaseYear = 0;
+            string userInput;
+            string genre;
+            string title;
+            string author;
+            int releaseYear;
 
             while (true)
             {
@@ -58,32 +49,27 @@ namespace Biblioteket
                     case "2":
                         while (true)
                         {
-                            // list that holds books details
-                            List<string> tempBooksString = new List<string>();
-                            // list that holds all four details as a list
-                            List<List<string>> tempBooksList = new List<List<string>>();
+                            // list that holds book's 4 details
+                            List<string> tempDetails = new List<string>();
 
-                            // get book details
-                            genre = GetGenre();
-                            title = GetTitle();
-                            author = GetAuthor();
-                            releaseYear = GetReleaseYear();
+                            // list that holds all four details combined in a list
+                            List<List<string>> tempBook = new List<List<string>>();
 
-                            // add current book to temp list
-                            tempBooksString.Add(genre);
-                            tempBooksString.Add(title);
-                            tempBooksString.Add(author);
-                            tempBooksString.Add(releaseYear.ToString());
+                            // add current book details to tempDetails list
+                            tempDetails.Add(GetGenre());
+                            tempDetails.Add(GetTitle());
+                            tempDetails.Add(GetAuthor());
+                            tempDetails.Add(GetReleaseYear().ToString());
 
                             // add the list of 4 to another NEWLY CREATED list (making them en entity) 
-                            tempBooksList.Add(tempBooksString);
+                            tempBook.Add(tempDetails);
 
-                            // save list entry in other list 
-                            bookList.AddRange(tempBooksList);
+                            // save list entry in permanent list 
+                            bookList.AddRange(tempBook);
 
-                            //dump temp lists
-                            tempBooksString = null;
-                            tempBooksList = null;
+                            // dump temp lists
+                            tempDetails = null;
+                            tempBook = null;
 
                             Console.Clear();
                             Console.Write("Vill du lägga till fler böcker? [J/N]: ");
@@ -138,7 +124,7 @@ namespace Biblioteket
                 Console.WriteLine("--------------------");
                 Console.Write("Ditt val: ");
 
-                userInput = Console.ReadLine().ToUpper();
+                string userInput = Console.ReadLine().ToUpper();
 
                 switch (userInput)
                 {
