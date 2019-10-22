@@ -15,14 +15,20 @@ namespace Biblioteket
         }
 
         // method to add several books to library
-        public static void AddManyBooks(List<List<string>> tempBooksList)
+        public static void AddBook(List<List<string>> bookList)
         {
-            foreach (var tempBooksString in tempBooksList)
-            {
-                foreach (string detail in tempBooksString)
-                {
+            string genre = "";
+            string title = "";
+            string author = "";
+            string releaseYear = "";
 
-                }
+            foreach (var tempBookString in bookList)
+            {
+                genre = tempBookString[0];
+                title = tempBookString[1];
+                author = tempBookString[2];
+                releaseYear = tempBookString[3];
+                Book.CreateBook(genre, title, author, releaseYear);
             }
         }
 
