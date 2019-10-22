@@ -11,6 +11,9 @@ namespace Biblioteket
         static string author;
         static int releaseYear;
 
+        // creates instance of Menu
+        Menu M = new Menu();
+
         // list that holds books details
         static List<string> tempBooksString = new List<string>();
         // list that holds several stringified books
@@ -67,7 +70,7 @@ namespace Biblioteket
                             userInput = Console.ReadLine().ToUpper();
 
                             // create books from details in list
-                            
+                            if (userInput != "J")
                             {
                                 Library.AddManyBooks(tempBooksList);
                                 Console.WriteLine("Böckerna har lagts till i bibioteket.");
