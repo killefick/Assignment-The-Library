@@ -39,7 +39,7 @@ namespace Biblioteket
                     case "1":
                         genre = GetGenre();
                         CreateOneBook(genre);
-                        Book.CreateBook(genre, title, author, releaseYear);
+                        Book.CreateBook(genre, title, author, releaseYear.ToString());
 
                         Console.WriteLine("Boken har lagts till i bibioteket.");
                         System.Threading.Thread.Sleep(1000);

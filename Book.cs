@@ -6,15 +6,15 @@ namespace Biblioteket
         // protected variables
         protected string title;
         protected string author;
-        protected int releaseYear;
+        protected string releaseYear;
 
         // accessable properties
-        public static string Title { get; set; }
-        public static string Author { get; set; }
-        public static int ReleaseYear { get; set; }
+        // public static string Title { get; set; }
+        // public static string Author { get; set; }
+        // public static string releaseYear { get; set; }
 
         // constructor initialising varibles
-        public Book(string title, string author, int releaseYear)
+        public Book(string title, string author, string releaseYear)
         {
             this.title = title;
             this.author = author;
@@ -22,7 +22,7 @@ namespace Biblioteket
         }
 
         // method to create a book
-        public static void CreateBook(string genre, string title, string author, int releaseYear)
+        public static void CreateBook(string genre, string title, string author, string releaseYear)
         {
             switch (genre)
             {
@@ -47,7 +47,7 @@ namespace Biblioteket
     // subclasses
     class Novel : Book
     {
-        public Novel(string title, string author, int releaseYear) : base(title, author, releaseYear)
+        public Novel(string title, string author, string releaseYear) : base(title, author, releaseYear)
         {
         }
         public override string ToString()
@@ -58,7 +58,7 @@ namespace Biblioteket
     }
     class Magazine : Book
     {
-        public Magazine(string title, string author, int releaseYear) : base(title, author, releaseYear)
+        public Magazine(string title, string author, string releaseYear) : base(title, author, releaseYear)
         {
         }
         public override string ToString()
@@ -69,7 +69,7 @@ namespace Biblioteket
     }
     class NovelCollection : Book
     {
-        public NovelCollection(string title, string author, int releaseYear) : base(title, author, releaseYear)
+        public NovelCollection(string title, string author, string releaseYear) : base(title, author, releaseYear)
         {
         }
         public override string ToString()
