@@ -37,15 +37,17 @@ namespace Biblioteket
             bookList.Clear();
             foreach (var book in myLibrary)
             {
+                // if match, add to list
                 if (book.ToString().ToLower().Contains(searchString))
                 {
                     bookList.Add(book.ToString());
                 }
-                else if (bookList.Count == 0)
-                {
-                    NoBook noBook = new NoBook();
-                    bookList.Add(noBook.ToString());
-                }
+            }
+            // if there were no matches, add placeholder with message
+            if (bookList.Count == 0)
+            {
+                NoBook noBook = new NoBook();
+                bookList.Add(noBook.ToString());
             }
             return bookList;
         }
