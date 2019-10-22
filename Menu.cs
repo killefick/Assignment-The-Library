@@ -11,16 +11,16 @@ namespace Biblioteket
         static string author;
         static int releaseYear;
 
-        // list that holds stringified books
-        static List<List<string>> bookListWithLists = new List<List<string>>();
+        // list that holds books details
         static List<string> bookListWithStrings = new List<string>();
+        // list that holds several stringified books
+        static List<List<string>> bookListWithLists = new List<List<string>>();
 
         // method to show menu to user
         public static void ShowMenu()
         {
             while (true)
             {
-                // print menu
                 Console.Clear();
                 Console.WriteLine("Välkommen till biblioteket!");
                 Console.WriteLine("------------------------------------------------");
@@ -31,15 +31,17 @@ namespace Biblioteket
                 Console.WriteLine("[X] Avsluta programmet");
                 Console.WriteLine("------------------------------------------------");
                 Console.Write("Ditt val: ");
-
                 userInput = Console.ReadLine().ToUpper();
 
                 switch (userInput)
                 {
                     case "1":
+                        // pick a genre
                         genre = GetGenre();
-                        CreateOneBook(genre);
-                        
+                        // read book details
+                        GetBookDetails();
+                        // create a book in library
+                        Book.CreateBook(genre, title, author, releaseYear.ToString());
 
                         Console.WriteLine("Boken har lagts till i bibioteket.");
                         System.Threading.Thread.Sleep(1000);
@@ -49,33 +51,35 @@ namespace Biblioteket
                         while (true)
                         {
                             genre = GetGenre();
-                            CreateManyBooks(genre);
+                            GetBookDetails();
+                            // add current book to temp list
+                            bookListWithStrings.Add(genre);
+                            bookListWithStrings.Add(title);
+                            bookListWithStrings.Add(author);
+                            bookListWithStrings.Add(releaseYear.ToString());
 
                             Console.Write("Vill du lägga till en bok? [J/N]: ");
                             userInput = Console.ReadLine().ToUpper();
-                            if (userInput == "J")
+
+                            // create books from details in list
+                            if (userInput != "J")
                             {
-                            }
-                            else
-                            {
-                                foreach (string bookString in bookListWithStrings)
-                                {
-                                    // genre = bookString;
-                                    // title = bookString[1];
-                                    // author = bookString[2];
-                                    // releaseYear = Convert.ToInt32(bookString[3]);
-                                    // Book.CreateBook(genre, title, author, releaseYear);
-                                }
+                                CreateManyBooks();
                                 bookListWithStrings.Clear();
                                 Console.WriteLine("Böckerna har lagts till i bibioteket.");
                                 System.Threading.Thread.Sleep(1000);
                                 break;
                             }
+
+                            else
+                            {
+                                // continue loop
+                            }
                         }
                         break;
 
                     case "3":
-                        GetBookListFromLibrary();
+                        PrintBookList();
                         break;
 
                     case "4":
@@ -135,14 +139,13 @@ namespace Biblioteket
         // method to create a book with all details
         static void CreateOneBook(string genre)
         {
-            int releaseYear;
             Console.Clear();
             Console.WriteLine("Ange bokens titel: ");
-            string title = Console.ReadLine();
+            title = Console.ReadLine();
 
             Console.Clear();
             Console.WriteLine("Ange bokens författare: ");
-            string author = Console.ReadLine();
+            author = Console.ReadLine();
 
             while (true)
             {
@@ -170,57 +173,59 @@ namespace Biblioteket
                     System.Threading.Thread.Sleep(1000);
                 }
             }
-           Book.CreateBook(genre, title, author, releaseYear.ToString());
+            Book.CreateBook(genre, title, author, releaseYear.ToString());
         }
 
         // method to create list of books
-        static void CreateManyBooks(string genre)
+        static void CreateManyBooks()
         {
-            int releaseYear;
-            Console.Clear();
-            Console.WriteLine("Ange bokens titel: ");
-            string title = Console.ReadLine();
 
-            Console.Clear();
-            Console.WriteLine("Ange bokens författare: ");
-            string author = Console.ReadLine();
 
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("Ange bokens utgivningsår: ");
-                string tempInt = Console.ReadLine();
-
-                // check if input can be a year
-                try
-                {
-                    releaseYear = Convert.ToInt32(tempInt);
-                    if (releaseYear >= 1454 && releaseYear <= DateTime.Now.Year)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ange ett giltigt årtal!");
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                }
-                catch
-                {
-                    Console.WriteLine("Ange ett giltigt årtal!");
-                    System.Threading.Thread.Sleep(1000);
-                }
-            }
-            bookListWithStrings.Add(genre);
-            bookListWithStrings.Add(title);
-            bookListWithStrings.Add(author);
-            bookListWithStrings.Add(releaseYear.ToString());
             //  Book.CreateBook(genre, title, author, releaseYear);
             // Console.WriteLine("Boken har lagts till i bibioteket.");
         }
 
+        // method to get book's details
+        static void GetBookDetails()
+        {
+            Console.Clear();
+            Console.WriteLine("Ange bokens titel: ");
+            title = Console.ReadLine();
+
+            Console.Clear();
+            Console.WriteLine("Ange bokens författare: ");
+            author = Console.ReadLine();
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Ange bokens utgivningsår: ");
+                string tempInt = Console.ReadLine();
+
+                // check if input can be a year
+                try
+                {
+                    releaseYear = Convert.ToInt32(tempInt);
+                    if (releaseYear >= 1454 && releaseYear <= DateTime.Now.Year)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ange ett giltigt årtal!");
+                        System.Threading.Thread.Sleep(1000);
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Ange ett giltigt årtal!");
+                    System.Threading.Thread.Sleep(1000);
+                }
+            }
+        }
+
         // method to print all books in library to screen
-        static void GetBookListFromLibrary()
+        static void PrintBookList()
         {
             Console.Clear();
             Console.WriteLine("Biblioteket innehåller: ");
@@ -238,6 +243,7 @@ namespace Biblioteket
             Console.ReadKey();
         }
 
+        // method to search library for matches
         static void Search()
         {
             bookListWithLists.Clear();

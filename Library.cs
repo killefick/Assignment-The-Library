@@ -51,11 +51,5 @@ namespace Biblioteket
             }
             return bookList;
         }
-        // else
-        // {
-        //     return "Inget i biblioteket matchade söktermen " + searchString + "!";
-        //     Console.WriteLine("\n\t\tTryck på valfri tangent för att återgå till menyn");
-        //     Console.ReadLine();
-        // }
     }
 }
