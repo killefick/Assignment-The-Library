@@ -5,8 +5,9 @@ namespace Biblioteket
 {
     class Menu
     {
+        Library L = new Library();
         // method to show menu to user
-        public static void ShowMenu()
+        public void ShowMenu()
         {
             // list that holds several stringified books
             List<List<string>> bookList = new List<List<string>>();
@@ -78,7 +79,7 @@ namespace Biblioteket
                             // create books from details in list
                             if (userInput != "J")
                             {
-                                Library.AddBook(bookList);
+                                L.AddBook(bookList);
                                 Console.WriteLine("Böckerna har lagts till i bibioteket.");
                                 System.Threading.Thread.Sleep(1000);
                                 break;
@@ -110,7 +111,7 @@ namespace Biblioteket
         }
 
         // method to ask for genre
-        static string GetGenre()
+        string GetGenre()
         {
             while (true)
             {
@@ -149,7 +150,7 @@ namespace Biblioteket
         }
 
         // method to ask for title
-        static string GetTitle()
+        string GetTitle()
         {
             Console.Clear();
             Console.WriteLine("Vänligen ange titel: ");
@@ -158,7 +159,7 @@ namespace Biblioteket
         }
 
         // method to ask for author
-        static string GetAuthor()
+        string GetAuthor()
         {
             Console.Clear();
             Console.WriteLine("Vänligen ange författare: ");
@@ -167,7 +168,7 @@ namespace Biblioteket
         }
 
         // method to ask for release year
-        static int GetReleaseYear()
+        int GetReleaseYear()
         {
             int releaseYear;
             while (true)
@@ -200,14 +201,14 @@ namespace Biblioteket
         }
 
         // method to print all books in library to screen
-        static void PrintBookList()
+        void PrintBookList()
         {
             List<List<string>> tempBooksList = new List<List<string>>();
             Console.Clear();
             Console.WriteLine("Biblioteket innehåller: ");
             Console.WriteLine("-----------------------");
             // add all books to the list
-            tempBooksList.Add(Library.MakeListOfBooks());
+            tempBooksList.Add(L.MakeListOfBooks());
             foreach (var bookObject in tempBooksList)
             {
                 foreach (var bookString in bookObject)
@@ -222,7 +223,7 @@ namespace Biblioteket
         }
 
         // method to search library for matches
-        static void Search()
+        void Search()
         {
             List<List<string>> matchingBooks = new List<List<string>>();
 
@@ -239,7 +240,7 @@ namespace Biblioteket
                     // look for match in all books
                     // if match, get returning list of book details (4 strings per book entry)
                     // and add to matchingBooks
-                    matchingBooks.Add(Library.SearchBooks(searchString.ToLower()));
+                    matchingBooks.Add(L.SearchBooks(searchString.ToLower()));
 
                     // every list containing book details
                     foreach (var books in matchingBooks)

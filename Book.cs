@@ -19,21 +19,22 @@ namespace Biblioteket
         // method to create a book
         public static void CreateBook(string genre, string title, string author, string releaseYear)
         {
+            Library L = new Library();
             switch (genre)
             {
                 case "Roman":
                     Novel myNovel = new Novel(title, author, releaseYear);
-                    Library.AddBook(myNovel);
+                    L.AddBook(myNovel);
                     break;
 
                 case "Tidskrift":
                     Magazine myMagazine = new Magazine(title, author, releaseYear);
-                    Library.AddBook(myMagazine);
+                    L.AddBook(myMagazine);
                     break;
 
                 case "Novellsamling":
                     NovelCollection myNovelCollection = new NovelCollection(title, author, releaseYear);
-                    Library.AddBook(myNovelCollection);
+                    L.AddBook(myNovelCollection);
                     break;
             }
         }
@@ -73,7 +74,7 @@ namespace Biblioteket
             return result;
         }
     }
-   
+
     // used if a search gets no results
     class NoBook
     {
