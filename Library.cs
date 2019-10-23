@@ -5,13 +5,14 @@ namespace Biblioteket
     class Library
     {
         // list to save books in library
-        private static List<Book> myLibrary = new List<Book>();
-        private static List<string> bookList = new List<string>();
+        private List<Book> myLibrary = new List<Book>();
+        static private List<string> bookList = new List<string>();
 
         // method to add one book to library
         public static void AddBook(Book myBook)
         {
-            myLibrary.Add(myBook);
+            Library L = new Library();
+            L.myLibrary.Add(myBook);
         }
 
         // method to add several books to library
@@ -35,8 +36,9 @@ namespace Biblioteket
         // method to put all books into a list of strings for output
         public static List<string> MakeListOfBooks()
         {
+            Library L = new Library();
             bookList.Clear();
-            foreach (var book in myLibrary)
+            foreach (var book in L.myLibrary)
             {
                 bookList.Add(book.ToString());
             }
@@ -46,8 +48,9 @@ namespace Biblioteket
         // method to search library for title, author or release year
         public static List<string> SearchBooks(string searchString)
         {
+            Library L = new Library();
             bookList.Clear();
-            foreach (var book in myLibrary)
+            foreach (var book in L.myLibrary)
             {
                 // if match, add to list
                 if (book.ToString().ToLower().Contains(searchString))
