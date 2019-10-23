@@ -8,6 +8,27 @@ namespace Biblioteket
         private List<Book> myLibrary = new List<Book>();
         private List<string> bookList = new List<string>();
 
+        // adds some books to library
+        public Library()
+        {
+            Novel myBook1 = new Novel("W", "Steve Sem-Sandberg", "2013");
+            AddBook(myBook1);
+            Magazine myBook2 = new Magazine("Vem dödade bambi?", "Monika Fagerholm", "1973");
+            AddBook(myBook2);
+            NovelCollection myBook3 = new NovelCollection("Köttets tid", "Lina Wolff", "1943");
+            AddBook(myBook3);
+            Novel myBook4 = new Novel("Jag vill sätta världen i rörelse", "Anna-Karin Palm", "1961");
+            AddBook(myBook4);
+            Magazine myBook5 = new Magazine("Oktoberbarn", "Linda Boström Knausgård", "1955");
+            AddBook(myBook5);
+        }
+
+        // method to add books to library via constructor
+        public void AddBook(Book myBook)
+        {
+            myLibrary.Add(myBook);
+        }
+
         // method to add one book to library
         public void AddBook(Library L, Book myBook)
         {

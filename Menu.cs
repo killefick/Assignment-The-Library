@@ -5,8 +5,10 @@ namespace Biblioteket
 {
     class Menu
     {
+        Library L = new Library();
+
         // method to show menu to user
-        public void ShowMenu(Library L)
+        public void ShowMenu(Menu M)
         {
             // list that holds several stringified books
             List<List<string>> bookList = new List<List<string>>();
@@ -206,7 +208,7 @@ namespace Biblioteket
             Console.Clear();
             Console.WriteLine("Biblioteket innehåller: ");
             Console.WriteLine("-----------------------");
-            
+
             // add all books to the list
             tempBooksList.Add(L.MakeListOfBooks());
             foreach (var bookObject in tempBooksList)
