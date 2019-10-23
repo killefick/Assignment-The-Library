@@ -206,6 +206,7 @@ namespace Biblioteket
             Console.Clear();
             Console.WriteLine("Biblioteket innehåller: ");
             Console.WriteLine("-----------------------");
+            
             // add all books to the list
             tempBooksList.Add(L.MakeListOfBooks());
             foreach (var bookObject in tempBooksList)
