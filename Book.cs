@@ -23,17 +23,17 @@ namespace Biblioteket
             {
                 case "Roman":
                     Novel myNovel = new Novel(title, author, releaseYear);
-                    L.AddBook(myNovel);
+                    L.AddBook(L, myNovel);
                     break;
 
                 case "Tidskrift":
                     Magazine myMagazine = new Magazine(title, author, releaseYear);
-                    L.AddBook(myMagazine);
+                    L.AddBook(L, myMagazine);
                     break;
 
                 case "Novellsamling":
                     NovelCollection myNovelCollection = new NovelCollection(title, author, releaseYear);
-                    L.AddBook(myNovelCollection);
+                    L.AddBook(L, myNovelCollection);
                     break;
             }
         }

@@ -78,7 +78,7 @@ namespace Biblioteket
                             // create books from details in list
                             if (userInput != "J")
                             {
-                                L.AddBook(bookList);
+                                L.AddBook(L, bookList);
                                 Console.WriteLine("Böckerna har lagts till i bibioteket.");
                                 System.Threading.Thread.Sleep(1000);
                                 break;

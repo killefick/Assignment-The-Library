@@ -9,13 +9,13 @@ namespace Biblioteket
         private List<string> bookList = new List<string>();
 
         // method to add one book to library
-        public void AddBook(Book myBook)
+        public void AddBook(Library L, Book myBook)
         {
             myLibrary.Add(myBook);
         }
 
         // method to add several books to library
-        public void AddBook(List<List<string>> bookList)
+        public void AddBook(Library L, List<List<string>> bookList)
         {
             string genre = "";
             string title = "";
@@ -28,7 +28,7 @@ namespace Biblioteket
                 title = tempBookString[1];
                 author = tempBookString[2];
                 releaseYear = tempBookString[3];
-                Book.CreateBook(genre, title, author, releaseYear);
+                Book.CreateBook(L, genre, title, author, releaseYear);
             }
         }
 
