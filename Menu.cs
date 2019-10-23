@@ -5,9 +5,8 @@ namespace Biblioteket
 {
     class Menu
     {
-        Library L = new Library();
         // method to show menu to user
-        public void ShowMenu()
+        public void ShowMenu(Library L)
         {
             // list that holds several stringified books
             List<List<string>> bookList = new List<List<string>>();
@@ -42,7 +41,7 @@ namespace Biblioteket
                         releaseYear = GetReleaseYear();
 
                         // create a book in library
-                        Book.CreateBook(genre, title, author, releaseYear.ToString());
+                        Book.CreateBook(L, genre, title, author, releaseYear.ToString());
                         Console.WriteLine("Boken har lagts till i bibioteket.");
                         System.Threading.Thread.Sleep(1000);
                         break;
@@ -92,11 +91,11 @@ namespace Biblioteket
                         break;
 
                     case "3":
-                        PrintBookList();
+                        PrintBookList(L);
                         break;
 
                     case "4":
-                        Search();
+                        Search(L);
                         break;
 
                     case "X":
@@ -201,7 +200,7 @@ namespace Biblioteket
         }
 
         // method to print all books in library to screen
-        void PrintBookList()
+        void PrintBookList(Library L)
         {
             List<List<string>> tempBooksList = new List<List<string>>();
             Console.Clear();
@@ -223,7 +222,7 @@ namespace Biblioteket
         }
 
         // method to search library for matches
-        void Search()
+        void Search(Library L)
         {
             List<List<string>> matchingBooks = new List<List<string>>();
 

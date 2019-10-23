@@ -2,10 +2,8 @@ using System.Collections.Generic;
 
 namespace Biblioteket
 {
-    class Library
+    public class Library
     {
-
-
         // list to save books in library
         private List<Book> myLibrary = new List<Book>();
         private List<string> bookList = new List<string>();

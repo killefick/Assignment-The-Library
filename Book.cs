@@ -17,9 +17,8 @@ namespace Biblioteket
         }
 
         // method to create a book
-        public static void CreateBook(string genre, string title, string author, string releaseYear)
+        public static void CreateBook(Library L, string genre, string title, string author, string releaseYear)
         {
-            Library L = new Library();
             switch (genre)
             {
                 case "Roman":

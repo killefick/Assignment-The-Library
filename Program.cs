@@ -6,6 +6,7 @@
         {
             Library L = new Library();
             Menu M = new Menu();
+            
             // add some books to library
             Novel myBook1 = new Novel("W", "Steve Sem-Sandberg", "2013");
             L.AddBook(myBook1);
@@ -19,7 +20,7 @@
             L.AddBook(myBook5);
 
             // show user interface
-            M.ShowMenu();
+            M.ShowMenu(L);
         }
     }
 }
